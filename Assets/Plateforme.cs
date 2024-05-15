@@ -4,33 +4,44 @@ using UnityEngine;
 
 public class Plateforme : MonoBehaviour
 {
-    public float speed;
-    public Transform[] waypoints;
-    private Transform target;
-    private int desPoint = 0;
+    public float speed; 
+    public Transform[] waypoints; // Points de passage que la plateforme va suivre
+    private int currentWaypointIndex = 0; // Indice du point de passage actuel
 
-    private SpriteRenderer spriteRenderer; // Ajout de la r�f�rence au SpriteRenderer
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        target = waypoints[0];
-        spriteRenderer = GetComponent<SpriteRenderer>(); // R�cup�ration du composant SpriteRenderer
-    }
-
-    // Update is called once per frame
+    // Appeler la fonction pour déplacer la plateforme
     void Update()
     {
-        Vector3 direction = target.position - transform.position;
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        MovePlatform(); 
+    }
 
-        if (Vector3.Distance(transform.position, target.position) < 0.3f)
+    void MovePlatform()
+    {
+        // Déplacer la plateforme vers le prochain point de passage
+        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].position, speed * Time.deltaTime);
+
+        // Vérifier si la plateforme a atteint le point de passage actuel
+        if (transform.position == waypoints[currentWaypointIndex].position)
         {
-            desPoint = (desPoint + 1) % waypoints.Length;
-            target = waypoints[desPoint];
+            // Passer au point de passage suivant
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+        }
+    }
 
-            // Inverser horizontalement l'ennemi lors du changement de direction
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        // Si le joueur est en collision avec la plateforme, le déplacer avec la plateforme
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        // Si le joueur quitte la plateforme, le détacher de celle-ci
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.transform.SetParent(null);
         }
     }
 }
