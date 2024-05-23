@@ -9,6 +9,8 @@ TagManager:
   - Mechant
   - Collectible
   - InteracUI
+  - Seed
+  - Legume
   layers:
   - Default
   - TransparentFX

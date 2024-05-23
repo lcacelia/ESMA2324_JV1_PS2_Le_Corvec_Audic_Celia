@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class trampoline : MonoBehaviour
 {
-    private float bounce = 20f;
+    public float bounce;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

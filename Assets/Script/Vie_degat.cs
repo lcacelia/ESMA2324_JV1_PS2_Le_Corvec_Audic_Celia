@@ -46,6 +46,15 @@ public class Vie_degat
         }
     }
 
+    void degat_legume()
+    {
+        health -= 0;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
     void degat_Boss()
     {
         health -= 2;
@@ -62,6 +71,21 @@ public class Vie_degat
         Restart_level();
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Mechant"))
+        {
+            degat_mechant();
+        }
+
+        if (other.CompareTag("Legume"))
+        {
+            degat_mechant();
+        }
+    }
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!invincible)
@@ -70,10 +94,10 @@ public class Vie_degat
             {
                 degat_mechant();
             }
-            if (collision.gameObject.CompareTag("Boss"))
-            {
-                degat_Boss();
-            }
+           // if (collision.gameObject.CompareTag("Boss"))
+           // {
+            //    degat_Boss();
+            //}
         }
     }
 

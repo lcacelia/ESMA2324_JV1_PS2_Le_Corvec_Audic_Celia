@@ -1,15 +1,17 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class deplacement : MonoBehaviour
+public class Mouvement : MonoBehaviour
 {
     private Rigidbody2D rgbd;
     public float speed;
-    public float jump_speed;
+    public float jumpForce;
 
-    public Transform ground_check;
-    public LayerMask ground;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+
+    private bool isGrounded;
 
     void Awake()
     {
@@ -18,13 +20,17 @@ public class deplacement : MonoBehaviour
 
     void Update()
     {
-        // DEPLACEMENT
-        rgbd.velocity = new Vector2 (Input.GetAxis("Horizontal") * speed, rgbd.velocity.y);
-        if(Input.GetKeyDown(KeyCode.Space) && Grounded())
+        // Déplacement horizontal
+        float moveInput = Input.GetAxis("Horizontal");
+        rgbd.velocity = new Vector2(moveInput * speed, rgbd.velocity.y);
+
+        // Saut
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rgbd.velocity = new Vector2(rgbd.velocity.x, jump_speed);
+            rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
         }
+
+        // Vérifier si le joueur est au sol
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
-     // Permet de savoir quand le joeur touche le sol
-    private bool Grounded(){ return Physics2D.OverlapCircle(ground_check.position, 0.2f, ground); }
 }
