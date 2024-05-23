@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8027192629941474982}
   m_Layer: 0
   m_Name: toile
-  m_TagString: Untagged
+  m_TagString: Mechant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

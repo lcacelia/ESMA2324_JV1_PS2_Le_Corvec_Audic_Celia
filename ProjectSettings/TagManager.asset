@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sol
+  - InteractUI
+  - Mechant
+  - Collectible
+  - InteracUI
   layers:
   - Default
   - TransparentFX
