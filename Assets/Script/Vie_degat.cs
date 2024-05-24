@@ -10,7 +10,7 @@ public class Vie_degat
     public int health = 3;
     private Rigidbody2D body;
     private BoxCollider2D col;
-    private bool invicible;
+    //private bool invicible;
 
     public Image[] hearts;
     public Sprite full_heart;
@@ -22,7 +22,7 @@ public class Vie_degat
         DontDestroyOnLoad(this);
         body = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
-        invicible = false;
+       // invicible = false;
 
     }
 
