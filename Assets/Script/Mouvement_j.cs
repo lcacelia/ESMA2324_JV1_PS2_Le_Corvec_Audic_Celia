@@ -6,31 +6,47 @@ public class Mouvement : MonoBehaviour
 {
     private Rigidbody2D rgbd;
     public float speed;
-    public float jumpForce;
+    public float jump_speed;
+    public float invincibleSpeed;
+    private bool isInvincible = false;
 
-    public Transform groundCheck;
-    public LayerMask groundLayer;
+    public Transform ground_check;
+    public LayerMask ground;
 
-    private bool isGrounded;
+    private float originalJumpSpeed;
 
     void Awake()
     {
         rgbd = GetComponent<Rigidbody2D>();
+        originalJumpSpeed = jump_speed;
     }
 
     void Update()
     {
-        // Déplacement horizontal
-        float moveInput = Input.GetAxis("Horizontal");
-        rgbd.velocity = new Vector2(moveInput * speed, rgbd.velocity.y);
+        // DEPLACEMENT
+        float currentHorizontalInput = Input.GetAxis("Horizontal");
+        float currentSpeed = isInvincible ? invincibleSpeed : speed;
+        rgbd.velocity = new Vector2(currentHorizontalInput * currentSpeed, rgbd.velocity.y);
 
-        // Saut
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && Grounded())
         {
-            rgbd.velocity = new Vector2(rgbd.velocity.x, jumpForce);
+            rgbd.velocity = new Vector2(rgbd.velocity.x, jump_speed);
         }
-
-        // Vérifier si le joueur est au sol
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
+
+    public void SetInvincible(bool value, float jumpMultiplier)
+    {
+        isInvincible = value;
+        if (isInvincible)
+        {
+            jump_speed *= jumpMultiplier; // Multiplier la hauteur de saut lorsque le joueur est invincible
+        }
+        else
+        {
+            jump_speed = originalJumpSpeed; // Rétablir la hauteur de saut initiale lorsque le joueur n'est plus invincible
+        }
+    }
+
+    // Permet de savoir quand le joueur touche le sol
+    private bool Grounded() { return Physics2D.OverlapCircle(ground_check.position, 0.2f, ground); }
 }

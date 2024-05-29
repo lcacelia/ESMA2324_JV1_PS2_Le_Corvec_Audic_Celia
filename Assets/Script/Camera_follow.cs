@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class Camera_follow : MonoBehaviour
 {
     public float FollowSpeed = 2f;
     public Transform target;

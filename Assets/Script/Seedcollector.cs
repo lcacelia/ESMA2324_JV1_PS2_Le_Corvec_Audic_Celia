@@ -8,15 +8,15 @@ public class Seedcollector : MonoBehaviour
 
     void Start()
     {
-        jaugeConfience = FindObjectOfType<Jauge_confience>(); // Trouver le script Jauge_confience dans la scène
+        jaugeConfience = FindObjectOfType<Jauge_confience>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Seed")) // Vérifier si c'est une graine
+        if (other.CompareTag("Seed"))
         {
-            jaugeConfience.CollectSeed(); // Appeler la méthode CollectSeed du script Jauge_confience
-            Destroy(other.gameObject); // Détruire la graine
+            jaugeConfience.IncreaseSeedCount();
+            Destroy(other.gameObject);
         }
     }
 }

@@ -5,36 +5,76 @@ using UnityEngine.UI;
 
 public class Jauge_confience : MonoBehaviour
 {
-    public Image[] growthStages; // Tableau contenant les images des différentes étapes de croissance
-    private int currentStage = 0; // Indice de l'étape actuelle de croissance
+    public GameObject player;
+    public PowerUp powerUp; // Ajout de la référence au script PowerUp
+    public Mouvement playerMovement; // Ajout de la référence au script Mouvement
+    public List<Image> plantGrowthStages;
+    private bool powerActive = false;
+    public int maxGrowthStage = 5;
+    public int seedsNeededForPowerUp = 4;
+    public int seedsCollected = 1;
+    public float powerUpDuration = 5f;
+    public float jumpMultiplier = 2; // Ajout du jumpMultiplier
 
     void Start()
     {
-        // Désactiver toutes les images sauf la première
-        for (int i = 1; i < growthStages.Length; i++)
+        SetPlantGrowthStage(0);
+        powerUp = FindObjectOfType<PowerUp>(); // Trouver le script PowerUp dans la scène
+        playerMovement = player.GetComponent<Mouvement>(); // Récupérer le script Mouvement du joueur
+    }
+
+    void Update()
+    {
+        if (seedsCollected >= seedsNeededForPowerUp && !powerActive)
         {
-            growthStages[i].gameObject.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                ActivatePowerUp();
+            }
+        }
+    }
+    void ActivatePowerUp()
+    {
+        powerActive = true;
+        playerMovement.SetInvincible(true, jumpMultiplier); // Utiliser la méthode SetInvincible avec jumpMultiplier
+        StartCoroutine(DeactivatePowerUpAfterDelay(powerUpDuration));
+        ResetPlantToLevel(0);
+    }
+
+    IEnumerator DeactivatePowerUpAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        powerActive = false;
+        playerMovement.SetInvincible(false, 1f); // Rétablir la méthode SetInvincible avec un jumpMultiplier de 1
+    }
+
+    public void IncreaseSeedCount()
+    {
+        seedsCollected++;
+        if (seedsCollected <= maxGrowthStage) // Changer le niveau de la plante en fonction du nombre de graines collectées
+        {
+            SetPlantGrowthStage(seedsCollected - 1);
         }
     }
 
-    public void CollectSeed()
+    public void SetPlantGrowthStage(int stage)
     {
-        if (currentStage < growthStages.Length - 1)
+        for (int i = 0; i < plantGrowthStages.Count; i++)
         {
-            currentStage++; // Passer à l'étape suivante
-            UpdateGrowthStage();
+            if (i == stage)
+            {
+                plantGrowthStages[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                plantGrowthStages[i].gameObject.SetActive(false);
+            }
         }
     }
 
-    void UpdateGrowthStage()
+    public void ResetPlantToLevel(int level)
     {
-        // Désactiver toutes les images
-        foreach (Image stage in growthStages)
-        {
-            stage.gameObject.SetActive(false);
-        }
-
-        // Activer seulement l'image correspondant à l'étape actuelle
-        growthStages[currentStage].gameObject.SetActive(true);
+        seedsCollected = 0;
+        SetPlantGrowthStage(level);
     }
 }
