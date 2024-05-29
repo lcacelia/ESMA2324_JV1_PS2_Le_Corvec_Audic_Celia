@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cinema_001.unity
     guid: c0690a07c749b2149a5951aeedbe527a
+  - enabled: 1
+    path: Assets/Scenes/partie2 proto.unity
+    guid: 3c92fec10e7519f4798a48824ab562f7
   m_configObjects: {}

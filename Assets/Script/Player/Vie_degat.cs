@@ -94,10 +94,10 @@ public class Vie_degat
             {
                 degat_mechant();
             }
-           // if (collision.gameObject.CompareTag("Boss"))
-           // {
-            //    degat_Boss();
-            //}
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                degat_Boss();
+            }
         }
     }
 

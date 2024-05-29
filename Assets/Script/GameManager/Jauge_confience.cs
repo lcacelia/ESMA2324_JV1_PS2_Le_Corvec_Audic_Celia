@@ -29,10 +29,16 @@ public class Jauge_confience : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.J))
             {
-                ActivatePowerUp();
+                NewMethod();
             }
         }
     }
+
+    private void NewMethod()
+    {
+        ActivatePowerUp();
+    }
+
     void ActivatePowerUp()
     {
         powerActive = true;

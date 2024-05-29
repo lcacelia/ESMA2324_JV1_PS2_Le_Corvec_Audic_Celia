@@ -11,6 +11,7 @@ TagManager:
   - InteracUI
   - Seed
   - Legume
+  - Boss
   layers:
   - Default
   - TransparentFX
