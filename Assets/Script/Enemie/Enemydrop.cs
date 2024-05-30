@@ -17,7 +17,7 @@ public class Enemydrop : MonoBehaviour
                 // Crée la SEED
                 GameObject SEED = Instantiate(dropItem, transform.position, Quaternion.identity);
 
-                // Active la potion
+                // Active la SEED
                 SEED.SetActive(true);
 
                 hasDropped = true;

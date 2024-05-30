@@ -6681,9 +6681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69dba0e17358e7408c386fc43c03638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  dialogueText: {fileID: 569327994}
-  animator: {fileID: 0}
 --- !u!4 &444220426
 Transform:
   m_ObjectHideFlags: 0
@@ -9244,14 +9241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b8c48a509795a4ab41db2a7e97edf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Panneau
-    sentences:
-    - 'saute continuellement pour ne pas tomber...
-
-'
-  isInRange: 0
-  interacUI: {fileID: 0}
 --- !u!114 &1011805115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13914,7 +13903,7 @@ Transform:
   m_GameObject: {fileID: 2145490129}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.019804602, w: -0.9998039}
-  m_LocalPosition: {x: -500, y: -3, z: 0}
+  m_LocalPosition: {x: -662.4, y: 44, z: 0}
   m_LocalScale: {x: 1.4450248, y: 1.5437944, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
