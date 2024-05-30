@@ -17,9 +17,13 @@ public class Vie_degat
     public Sprite empty_heart;
 
     private bool invincible = false;
+    public static GameObject player_instance;
+
+
     void Start()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
+        
         body = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
        // invicible = false;

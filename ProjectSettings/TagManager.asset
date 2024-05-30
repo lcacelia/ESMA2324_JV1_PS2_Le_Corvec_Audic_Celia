@@ -12,6 +12,7 @@ TagManager:
   - Seed
   - Legume
   - Boss
+  - Obstacle
   layers:
   - Default
   - TransparentFX

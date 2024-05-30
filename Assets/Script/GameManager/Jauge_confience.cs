@@ -27,7 +27,7 @@ public class Jauge_confience : MonoBehaviour
     {
         if (seedsCollected >= seedsNeededForPowerUp && !powerActive)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 NewMethod();
             }

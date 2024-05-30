@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class Changementdescene : MonoBehaviour
+public class Changement_de_scene : MonoBehaviour
 {
     public int sceneBuildIndex;
     private void OnTriggerEnter2D(Collider2D other)

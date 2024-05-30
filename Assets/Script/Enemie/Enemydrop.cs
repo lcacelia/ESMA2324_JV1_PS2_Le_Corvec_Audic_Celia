@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemydrop : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Enemydrop : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!hasDropped)
+        if (!hasDropped && SceneManager.GetSceneByBuildIndex(1).isLoaded)
         {
             float randomValue = Random.value;
 
@@ -17,8 +18,7 @@ public class Enemydrop : MonoBehaviour
                 // Crée la SEED
                 GameObject SEED = Instantiate(dropItem, transform.position, Quaternion.identity);
 
-                // Active la SEED
-                SEED.SetActive(true);
+              
 
                 hasDropped = true;
             }
