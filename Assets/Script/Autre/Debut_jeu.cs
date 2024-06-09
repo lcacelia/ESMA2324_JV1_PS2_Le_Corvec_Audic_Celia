@@ -7,6 +7,6 @@ public class Debut_jeu : MonoBehaviour
 {
     public void debut_jeu()
     {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync(1);
     }
 }

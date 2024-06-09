@@ -68,6 +68,15 @@ public class Vie_degat
         }
     }
 
+    void Mort()
+    {
+        health -= 3;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
 
     private void Die()
     {
@@ -86,6 +95,10 @@ public class Vie_degat
         {
             degat_mechant();
         }
+        if (other.CompareTag("mort"))
+        {
+            degat_mechant();
+        }
     }
 
 
@@ -99,6 +112,10 @@ public class Vie_degat
                 degat_mechant();
             }
             if (collision.gameObject.CompareTag("Boss"))
+            {
+                degat_Boss();
+            }
+            if (collision.gameObject.CompareTag("mort"))
             {
                 degat_Boss();
             }
